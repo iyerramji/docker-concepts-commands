@@ -11,10 +11,12 @@ Just a handy reference for various docker related concepts and commands
     ## Container
       Docker is an engine that runs containers
       Host can run multiple containers isolated with each other
-      The Docker daemon - dockerd listens for Docker API requests and manages host's Container life-cycles by utilizing contanerd (executor for containers)
+      The Docker daemon - **dockerd** listens for Docker API requests and manages host's Container life-cycles by utilizing **contanerd** (executor for containers)
     ## Image
       Many container can be created from a single image
     ## Image Layers
+      Image are made of multiple layers.
+      Each layer except, the very last one, is read-only.
       Docker caches layers when pulling and pushing images
     ## Registry
       Holds images
@@ -26,15 +28,17 @@ Just a handy reference for various docker related concepts and commands
 # Commands
 
     docker run hello-world
+    docker container run –it busybox
     docker run -d alpine ping www.docker.com
     docker run --rm -it -p 8085:80 learnbook/webserver
+    docker container run -p [HOST_PORT]:[CONTAINER_PORT]/tcp -p [HOST_PORT]:[CONTAINER_PORT]/udp [IMAGE]
     docker ps <container-ID>
     docker inspect <container-ID>
     docker logs <container-ID>
     docker stop <container-ID>
     docker rm <container-ID>
     docker container prune -f
-    docker volume prune -f
+
     docker image prune -f
     docker image prune --all
     docker images ls
@@ -42,6 +46,9 @@ Just a handy reference for various docker related concepts and commands
     (volumes)
     docker run -v /your/dir:/var/lib/mysql -d mysql:10.5
     docker volume create test-volume1
+    docker volume prune -f
+    docker volume inspect test-volume1
+    docker volume rm test-volume
     publish to registry using this format - <repository_name>/<name>:<tag>
     docker build -t hello . ( looks in Dockerfile locally)
     docker exec -i -t CONTAINER_ID /bin/bash
@@ -54,6 +61,11 @@ Just a handy reference for various docker related concepts and commands
     docker stats
     docker network create --subnet 10.1.0.0/24 --gateway 10.1.0.1 br02
     docker network inspect br02
+    docker network rm [NAME]
+    docker network prune
+    docker network connect br01 network-test03
+    docker container run -d --name network-test02 --ip 10.1.4.102 --network br04 nginx
+    docker container run --name network-test01 -it --network br04 centos /bin/bash
 
 
 # Dockerfile commands
@@ -128,3 +140,32 @@ Just a handy reference for various docker related concepts and commands
 # Docker security
     Namespaces provide isolation.
     Control Groups are about setting limits for: CPU, RAM and Disk I/O
+
+# Docker compose commands
+    https://docs.docker.com/compose/compose-file/
+    build: Build or rebuild services
+    bundle: Generate a Docker bundle from the Compose file
+    config: Validate and view the Compose file
+    create: Create services
+    down: Stop and remove containers, networks, images, and volumes
+    events: Receive real time events from containers
+    exec: Execute a command in a running container
+    help: Get help on a command
+    images: List images
+    kill: Kill containers
+    logs: View output from containers
+    pause: Pause services
+    port: Print the public port for a port binding
+    ps: List containers
+    pull: Pull service images
+    push: Push service images
+    restart: Restart services
+    rm: Remove stopped containers
+    run: Run a one-off command
+    scale: Set number of containers for a service
+    start: Start services
+    stop: Stop services
+    top: Display the running processes
+    unpause: Unpause services
+    up: Create and start containers
+    version: Show the Docker-Compose version information
