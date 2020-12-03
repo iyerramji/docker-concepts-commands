@@ -73,7 +73,7 @@ Just a handy reference for various docker related concepts and commands
     --restart always
     --restart unless-stopped
 
-#docker image:
+# docker image:
 
     build Build an image from a dockerfile
     history Show the history of an image
@@ -88,7 +88,7 @@ Just a handy reference for various docker related concepts and commands
     save Save one or more images to a tar file (streamed to STDOUT by default)
     tag Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
 
-#docker container:
+# docker container:
 
     attach Attach local standard input, output, and error streams to a running container
     commit Create a new image from a container's changes
@@ -116,7 +116,7 @@ Just a handy reference for various docker related concepts and commands
     update Update configuration of one or more containers
     wait Block until one or more containers stop, then print their exit codes
 
-#Network Drivers:
+# Network Drivers:
 
     bridge
     host
